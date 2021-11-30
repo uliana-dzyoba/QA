@@ -4,4 +4,4 @@ class BinaryFile:
         self.content = content
 
     def read(self):
-        pass
+        return self.content.getvalue()

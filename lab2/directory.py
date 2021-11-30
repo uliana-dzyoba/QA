@@ -6,19 +6,34 @@ class Directory:
         self.files = {}
 
     def add_subdir(self, name):
-        pass
+        if len(self.subdirs) + len(self.files) < self.DIR_MAX_ELEMS:
+            new_dir = Directory(name)
+            self.subdirs[name] = new_dir
+            return new_dir
+        else:
+            return False
 
     def add_file(self, file):
-        pass
+        if len(self.subdirs) + len(self.files) < self.DIR_MAX_ELEMS:
+            self.files[file.name] = file
+            return True
+        else:
+            return False
 
     def delete_subdir(self, name):
-        pass
+        return self.subdirs.pop(name, None)
 
     def delete_file(self, name):
-        pass
+        return self.files.pop(name, None)
 
     def list_subdirs(self):
-        pass
+        subdirs = []
+        for key in self.subdir:
+            subdirs.append(key)
+        return subdirs
 
     def list_files(self):
-        pass
+        files = []
+        for key in self.files:
+            files.append(key)
+        return files

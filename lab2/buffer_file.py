@@ -5,7 +5,11 @@ class BufferFile:
         self.elements = []
 
     def push(self, element):
-        pass
+        if len(self.elements) < self.MAX_BUF_FILE_SIZE:
+            self.elements.append(element)
+            return True
+        else:
+            return False
 
     def pop(self):
-        pass
+        self.elements.pop(0)

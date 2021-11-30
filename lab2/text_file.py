@@ -4,4 +4,4 @@ class TextFile:
         self.content = content
 
     def read(self):
-        pass
+        return self.content.getvalue()
