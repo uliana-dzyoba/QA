@@ -1,5 +1,7 @@
 import pytest
 
+from buffer_file import BufferFile
+from directory import Directory
 from filesystem import FileSystem
 
 
@@ -12,22 +14,34 @@ def test_create_directory(fs):
     fs.create_directory("root\\test_create")
     assert fs.directories.get("root\\test_create") != None
 
+def test_create_directory_max(fs):
+    Directory.DIR_MAX_ELEMS = 1
+    fs.create_directory("root\\test_create_max_1")
+    fs.create_directory("root\\test_create_max_2")
+    assert False
+
 
 def test_delete_directory():
     fs.create_directory("root\\test_delete")
     fs.delete_directory("root\\test_delete")
-    assert fs.directories.get("root\\test_create") == None
+    assert fs.directories.get("root\\test_delete") == None
 
 
 # def test_ls():
 #     assert True
 
 
-def test_move():
+def test_move_dir():
     fs.create_directory("root\\test_move1")
     fs.create_directory("root\\test_move2")
     fs.move("root\\test_move2", "root\\test_move1")
-    assert fs.directories.get("root\\test_create") != None
+    assert fs.directories.get("root\\test_move1\\test_move2") != None
+
+def test_move_file():
+    fs.create_directory("root\\test_move3")
+    fs.create_text_file("root\\test_move4")
+    fs.move("root\\test_move4", "root\\test_move3")
+    assert fs.files.get("root\\test_move3\\test_move4") != None
 
 
 def test_create_binary_file():
@@ -67,6 +81,13 @@ def test_push_buffer_file():
     fs.create_buffer_file("root\\push_test")
     fs.push_buffer_file("root\\push_test", "element1")
     assert fs.files.get("root\\push_test").elements[0] == "element1"
+
+def test_push_buffer_file_max():
+    BufferFile.MAX_BUF_FILE_SIZE = 1
+    fs.create_buffer_file("root\\push_max_test")
+    fs.push_buffer_file("root\\push_max_test", "element1")
+    fs.push_buffer_file("root\\push_max_test", "element2")
+    assert False
 
 
 def test_pop_buffer_file():
