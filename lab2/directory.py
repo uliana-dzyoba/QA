@@ -28,7 +28,7 @@ class Directory:
 
     def list_subdirs(self):
         subdirs = []
-        for key in self.subdir:
+        for key in self.subdirs:
             subdirs.append(key)
         return subdirs
 

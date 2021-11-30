@@ -18,6 +18,8 @@ def main():
     fs.create_buffer_file("root\\tech\\office\\printer_queue.bfr")
     fs.push_buffer_file("root\\tech\\office\\printer_queue.bfr", "image12.jpg")
     fs.push_buffer_file("root\\tech\\office\\printer_queue.bfr", "report.doc")
+    fs.ls("root")
+    fs.ls("root\\notes")
 
 
 
