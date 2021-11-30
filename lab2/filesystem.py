@@ -17,23 +17,26 @@ class FileSystem:
     def move(self, node_name, dest):
         pass
 
-    def create_binary_file(self, file_name):
+    def create_binary_file(self, name):
         pass
 
-    def create_text_file(self, file_name):
+    def read_file(self, name):
         pass
 
-    def write_text_file(self, file_name):
+    def create_text_file(self, name):
         pass
 
-    def create_buffer_file(self, file_name):
+    def write_text_file(self, name, line):
         pass
 
-    def push_buffer_file(self, file_name):
+    def create_buffer_file(self, name):
         pass
 
-    def pop_buffer_file(self, file_name):
+    def push_buffer_file(self, name, element):
         pass
 
-    def delete_file(self, file_name):
+    def pop_buffer_file(self, name):
+        pass
+
+    def delete_file(self, name):
         pass

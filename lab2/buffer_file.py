@@ -4,7 +4,7 @@ class BufferFile:
         self.name = name
         self.elements = []
 
-    def push(self):
+    def push(self, element):
         pass
 
     def pop(self):

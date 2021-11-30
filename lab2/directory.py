@@ -8,10 +8,13 @@ class Directory:
     def add_subdir(self, name):
         pass
 
-    def add_file(self, name):
+    def add_file(self, file):
         pass
 
     def delete_subdir(self, name):
+        pass
+
+    def delete_file(self, name):
         pass
 
     def list_subdirs(self):
