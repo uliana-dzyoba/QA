@@ -13,7 +13,7 @@ class FileSystem:
         self.files = {}
 
     def create_directory(self, dir_name):
-        parent_dir_name = dir_name.split('\\')[-2]
+        parent_dir_name = '\\'.join(dir_name.split('\\')[:-1])
         parent = self.directories[parent_dir_name]
         new_dir = parent.add_subdir(dir_name)
         if new_dir:
@@ -22,7 +22,7 @@ class FileSystem:
             raise ValueError("directory can't have more than 10 elements")
 
     def delete_directory(self, dir_name):
-        parent_dir_name = dir_name.split('\\')[-2]
+        parent_dir_name = '\\'.join(dir_name.split('\\')[:-1])
         parent = self.directories[parent_dir_name]
         if parent.delete_subdir(dir_name):
             self.directories.pop(dir_name)
@@ -37,7 +37,7 @@ class FileSystem:
         print(files)
 
     def move(self, node_name, dest):
-        parent_dir_name = node_name.split('\\')[-2]
+        parent_dir_name = '\\'.join(node_name.split('\\')[:-1])
         short_name = node_name.split('\\')[-1]
         parent = self.directories[parent_dir_name]
         if parent.delete_subdir(node_name):
@@ -62,7 +62,7 @@ class FileSystem:
     def create_binary_file(self, name):
         content = io.BytesIO(b'test')
         file = BinaryFile(name, content)
-        parent_dir_name = name.split('\\')[-2]
+        parent_dir_name = '\\'.join(name.split('\\')[:-1])
         parent = self.directories[parent_dir_name]
         success = parent.add_file(file)
         if success:
@@ -77,7 +77,7 @@ class FileSystem:
     def create_text_file(self, name):
         content = io.StringIO()
         file = TextFile(name, content)
-        parent_dir_name = name.split('\\')[-2]
+        parent_dir_name = '\\'.join(name.split('\\')[:-1])
         parent = self.directories[parent_dir_name]
         success = parent.add_file(file)
         if success:
@@ -91,7 +91,7 @@ class FileSystem:
 
     def create_buffer_file(self, name):
         file = BufferFile(name)
-        parent_dir_name = name.split('\\')[-2]
+        parent_dir_name = '\\'.join(name.split('\\')[:-1])
         parent = self.directories[parent_dir_name]
         success = parent.add_file(file)
         if success:
@@ -111,7 +111,7 @@ class FileSystem:
         return element
 
     def delete_file(self, name):
-        parent_dir_name = name.split('\\')[-2]
+        parent_dir_name = '\\'.join(name.split('\\')[:-1])
         parent = self.directories[parent_dir_name]
         if parent.delete_file(name):
             self.files.pop(name)
