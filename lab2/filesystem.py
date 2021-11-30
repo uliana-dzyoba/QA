@@ -10,6 +10,7 @@ class FileSystem:
     def __init__(self):
         self.root = Directory("root")
         self.directories = {"root": self.root}
+        self.files = {}
 
     def create_directory(self, dir_name):
         parent_dir_name = dir_name.split('\\')[-2]
@@ -86,7 +87,7 @@ class FileSystem:
 
     def write_text_file(self, name, line):
         file = self.files[name]
-        print(line, end=" ", file=file)
+        file.write(line)
 
     def create_buffer_file(self, name):
         file = BufferFile(name)

@@ -5,3 +5,6 @@ class TextFile:
 
     def read(self):
         return self.content.getvalue()
+
+    def write(self, line):
+        print(line, end=" ", file=self.content)
