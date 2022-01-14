@@ -25,7 +25,8 @@ def main():
         print("not redirected")
 
 
-    time.sleep(20)
+    time.sleep(15)
+    driver.quit()
 
 def sign_up(driver):
     name = driver.find_element(By.NAME, "firstname")
@@ -48,7 +49,7 @@ def sign_up(driver):
     gender = driver.find_element(By.CSS_SELECTOR, "input[name='sex'][value='1']")
     gender.click()
 
-    time.sleep(2)
+    time.sleep(1)
     button = driver.find_element(By.NAME, "websubmit")
     button.click()
 

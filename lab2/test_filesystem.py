@@ -15,10 +15,11 @@ def test_create_directory(fs):
     assert fs.directories.get("root\\test_create") != None
 
 def test_create_directory_max(fs):
-    Directory.DIR_MAX_ELEMS = 1
+    Directory.DIR_MAX_ELEMS = 2
     fs.create_directory("root\\test_create_max_1")
     fs.create_directory("root\\test_create_max_2")
-    assert False
+    with pytest.raises(Exception):
+        fs.create_directory("root\\test_create_max_3")
 
 
 def test_delete_directory(fs):
@@ -83,11 +84,12 @@ def test_push_buffer_file(fs):
     assert fs.files.get("root\\push_test").elements[0] == "element1"
 
 def test_push_buffer_file_max(fs):
-    BufferFile.MAX_BUF_FILE_SIZE = 1
+    BufferFile.MAX_BUF_FILE_SIZE = 2
     fs.create_buffer_file("root\\push_max_test")
     fs.push_buffer_file("root\\push_max_test", "element1")
     fs.push_buffer_file("root\\push_max_test", "element2")
-    assert False
+    with pytest.raises(Exception):
+        fs.push_buffer_file("root\\push_max_test", "element3")
 
 
 def test_pop_buffer_file(fs):
